@@ -1,0 +1,349 @@
+{
+  "per_archetype": [
+    {
+      "archetype": "knowledge_worker_bad_day",
+      "baseline_score": 85.85988815060448,
+      "baseline_sol_min": 36.369766148914934,
+      "interventions": [
+        {
+          "intervention": "no_screens",
+          "label": "No bright screens within 1 hour of bed",
+          "desc": "Smartphone/tablet displays produce ~ 50-100 lux at face.",
+          "score_baseline": 85.85988815060448,
+          "score_after": 91.50919030379313,
+          "score_delta": 5.649302153188657,
+          "sol_delta_min": -8.0,
+          "tst_delta_h": 0.13333333333333286,
+          "sws_delta_pp": 3.552713678800501e-15,
+          "rem_delta_pp": 3.552713678800501e-15
+        },
+        {
+          "intervention": "eat_earlier",
+          "label": "Eat your last meal 1 hour earlier",
+          "desc": "Meals within 2 h of bed delay SOL by 10-30 min (Crispim 2011).",
+          "score_baseline": 85.85988815060448,
+          "score_after": 90.70919030379314,
+          "score_delta": 4.84930215318866,
+          "sol_delta_min": -6.666666666666668,
+          "tst_delta_h": 0.11111111111111072,
+          "sws_delta_pp": -0.22081304665852386,
+          "rem_delta_pp": 0.5914553294489053
+        },
+        {
+          "intervention": "delay_bedtime_30min",
+          "label": "Delay bedtime by 30 minutes",
+          "desc": "Lets homeostatic sleep pressure build above the threshold; reduces SOL for early-bedtime owls.",
+          "score_baseline": 85.85988815060448,
+          "score_after": 89.60632362229249,
+          "score_delta": 3.7464354716880166,
+          "sol_delta_min": -4.866877110218439,
+          "tst_delta_h": 0.08111461850364066,
+          "sws_delta_pp": 0.22872427971245912,
+          "rem_delta_pp": 0.1896075771416612
+        },
+        {
+          "intervention": "skip_last_caffeine",
+          "label": "Skip your last caffeinated drink today",
+          "desc": "Removes the residual body caffeine that suppresses SWS + delays SOL.",
+          "score_baseline": 85.85988815060448,
+          "score_after": 89.59989769923311,
+          "score_delta": 3.7400095486286347,
+          "sol_delta_min": -4.460535738778265,
+          "tst_delta_h": 0.07434226231297103,
+          "sws_delta_pp": 2.332676222256559,
+          "rem_delta_pp": -0.7297432883957171
+        },
+        {
+          "intervention": "halve_last_caffeine",
+          "label": "Halve your last caffeinated drink",
+          "desc": "Halves the bedtime burden contribution.",
+          "score_baseline": 85.85988815060448,
+          "score_after": 88.81692027815781,
+          "score_delta": 2.957032127553333,
+          "sol_delta_min": -3.392839255493783,
+          "tst_delta_h": 0.05654732092489567,
+          "sws_delta_pp": 1.7875051661749168,
+          "rem_delta_pp": -0.5591908297911061
+        },
+        {
+          "intervention": "exercise_earlier",
+          "label": "Move evening exercise 3 hours earlier",
+          "desc": "Vigorous exercise within 1 h of bed adds 6-10 min to SOL (Stutz 2019).",
+          "score_baseline": 85.85988815060448,
+          "score_after": 88.27988815060446,
+          "score_delta": 2.4199999999999875,
+          "sol_delta_min": -3.299999999999997,
+          "tst_delta_h": 0.054999999999999716,
+          "sws_delta_pp": 3.552713678800501e-15,
+          "rem_delta_pp": 7.105427357601002e-15
+        },
+        {
+          "intervention": "dim_evening_light",
+          "label": "Dim ambient light below 30 lux 2 h pre-bed",
+          "desc": "Reduces melatonin suppression; promotes sleep onset (Khalsa 2003).",
+          "score_baseline": 85.85988815060448,
+          "score_after": 87.48423498131558,
+          "score_delta": 1.6243468307111044,
+          "sol_delta_min": -2.2150184055151527,
+          "tst_delta_h": 0.03691697342525302,
+          "sws_delta_pp": 0.0,
+          "rem_delta_pp": 3.552713678800501e-15
+        },
+        {
+          "intervention": "skip_alcohol",
+          "label": "Skip the alcoholic drinks tonight",
+          "desc": "Removes first-half-night REM suppression and second-half fragmentation.",
+          "score_baseline": 85.85988815060448,
+          "score_after": 85.85988815060448,
+          "score_delta": 0.0,
+          "sol_delta_min": 0.0,
+          "tst_delta_h": 0.0,
+          "sws_delta_pp": 0.0,
+          "rem_delta_pp": 0.0
+        },
+        {
+          "intervention": "advance_bedtime_30min",
+          "label": "Go to bed 30 minutes earlier",
+          "desc": "If your TST is too short, an earlier bedtime extends sleep.",
+          "score_baseline": 85.85988815060448,
+          "score_after": 82.06737475997394,
+          "score_delta": -3.792513390630532,
+          "sol_delta_min": 4.912348740753792,
+          "tst_delta_h": -0.08187247901256356,
+          "sws_delta_pp": -0.2568359496780914,
+          "rem_delta_pp": -0.18582161641117523
+        }
+      ]
+    },
+    {
+      "archetype": "weekend_bender",
+      "baseline_score": 94.01212830459835,
+      "baseline_sol_min": 24.979786159002742,
+      "interventions": [
+        {
+          "intervention": "eat_earlier",
+          "label": "Eat your last meal 1 hour earlier",
+          "desc": "Meals within 2 h of bed delay SOL by 10-30 min (Crispim 2011).",
+          "score_baseline": 94.01212830459835,
+          "score_after": 100.0,
+          "score_delta": 5.987871695401651,
+          "sol_delta_min": -11.999999999999998,
+          "tst_delta_h": 0.1999999999999993,
+          "sws_delta_pp": -0.13163985800217048,
+          "rem_delta_pp": 0.453705853545717
+        },
+        {
+          "intervention": "no_screens",
+          "label": "No bright screens within 1 hour of bed",
+          "desc": "Smartphone/tablet displays produce ~ 50-100 lux at face.",
+          "score_baseline": 94.01212830459835,
+          "score_after": 98.81212830459835,
+          "score_delta": 4.799999999999997,
+          "sol_delta_min": -7.9999999999999964,
+          "tst_delta_h": 0.13333333333333286,
+          "sws_delta_pp": 3.552713678800501e-15,
+          "rem_delta_pp": 3.552713678800501e-15
+        },
+        {
+          "intervention": "delay_bedtime_30min",
+          "label": "Delay bedtime by 30 minutes",
+          "desc": "Lets homeostatic sleep pressure build above the threshold; reduces SOL for early-bedtime owls.",
+          "score_baseline": 94.01212830459835,
+          "score_after": 96.72977536342188,
+          "score_delta": 2.7176470588235304,
+          "sol_delta_min": -4.529411764705884,
+          "tst_delta_h": 0.07549019607843022,
+          "sws_delta_pp": -0.33587437510562523,
+          "rem_delta_pp": 0.7814991909950635
+        },
+        {
+          "intervention": "dim_evening_light",
+          "label": "Dim ambient light below 30 lux 2 h pre-bed",
+          "desc": "Reduces melatonin suppression; promotes sleep onset (Khalsa 2003).",
+          "score_baseline": 94.01212830459835,
+          "score_after": 95.33347279722709,
+          "score_delta": 1.3213444926287394,
+          "sol_delta_min": -2.2022408210478943,
+          "tst_delta_h": 0.03670401368412968,
+          "sws_delta_pp": 0.0,
+          "rem_delta_pp": 0.0
+        },
+        {
+          "intervention": "skip_last_caffeine",
+          "label": "Skip your last caffeinated drink today",
+          "desc": "Removes the residual body caffeine that suppresses SWS + delays SOL.",
+          "score_baseline": 94.01212830459835,
+          "score_after": 94.01212830459835,
+          "score_delta": 0.0,
+          "sol_delta_min": 0.0,
+          "tst_delta_h": 0.0,
+          "sws_delta_pp": 0.0,
+          "rem_delta_pp": 0.0
+        },
+        {
+          "intervention": "halve_last_caffeine",
+          "label": "Halve your last caffeinated drink",
+          "desc": "Halves the bedtime burden contribution.",
+          "score_baseline": 94.01212830459835,
+          "score_after": 94.01212830459835,
+          "score_delta": 0.0,
+          "sol_delta_min": 0.0,
+          "tst_delta_h": 0.0,
+          "sws_delta_pp": 0.0,
+          "rem_delta_pp": 0.0
+        },
+        {
+          "intervention": "exercise_earlier",
+          "label": "Move evening exercise 3 hours earlier",
+          "desc": "Vigorous exercise within 1 h of bed adds 6-10 min to SOL (Stutz 2019).",
+          "score_baseline": 94.01212830459835,
+          "score_after": 94.01212830459835,
+          "score_delta": 0.0,
+          "sol_delta_min": 0.0,
+          "tst_delta_h": 0.0,
+          "sws_delta_pp": 0.0,
+          "rem_delta_pp": 0.0
+        },
+        {
+          "intervention": "advance_bedtime_30min",
+          "label": "Go to bed 30 minutes earlier",
+          "desc": "If your TST is too short, an earlier bedtime extends sleep.",
+          "score_baseline": 94.01212830459835,
+          "score_after": 90.28149015006466,
+          "score_delta": -3.7306381545336933,
+          "sol_delta_min": 6.0,
+          "tst_delta_h": -0.10000000000000142,
+          "sws_delta_pp": 0.20393738105323322,
+          "rem_delta_pp": -0.4804667773851783
+        },
+        {
+          "intervention": "skip_alcohol",
+          "label": "Skip the alcoholic drinks tonight",
+          "desc": "Removes first-half-night REM suppression and second-half fragmentation.",
+          "score_baseline": 94.01212830459835,
+          "score_after": 87.34815681673132,
+          "score_delta": -6.66397148786703,
+          "sol_delta_min": 10.0,
+          "tst_delta_h": -0.16666666666666785,
+          "sws_delta_pp": -2.477934963163481,
+          "rem_delta_pp": 4.882608437275614
+        }
+      ]
+    },
+    {
+      "archetype": "owl_forced_to_sleep_early",
+      "baseline_score": 95.53296814999972,
+      "baseline_sol_min": 22.445053083333796,
+      "interventions": [
+        {
+          "intervention": "no_screens",
+          "label": "No bright screens within 1 hour of bed",
+          "desc": "Smartphone/tablet displays produce ~ 50-100 lux at face.",
+          "score_baseline": 95.53296814999972,
+          "score_after": 100.0,
+          "score_delta": 4.467031850000282,
+          "sol_delta_min": -8.0,
+          "tst_delta_h": 0.13333333333333286,
+          "sws_delta_pp": 0.0,
+          "rem_delta_pp": 3.552713678800501e-15
+        },
+        {
+          "intervention": "dim_evening_light",
+          "label": "Dim ambient light below 30 lux 2 h pre-bed",
+          "desc": "Reduces melatonin suppression; promotes sleep onset (Khalsa 2003).",
+          "score_baseline": 95.53296814999972,
+          "score_after": 96.83347279722709,
+          "score_delta": 1.3005046472273705,
+          "sol_delta_min": -2.1675077453789484,
+          "tst_delta_h": 0.03612512908965115,
+          "sws_delta_pp": -3.552713678800501e-15,
+          "rem_delta_pp": 0.0
+        },
+        {
+          "intervention": "exercise_earlier",
+          "label": "Move evening exercise 3 hours earlier",
+          "desc": "Vigorous exercise within 1 h of bed adds 6-10 min to SOL (Stutz 2019).",
+          "score_baseline": 95.53296814999972,
+          "score_after": 96.13296814999973,
+          "score_delta": 0.6000000000000085,
+          "sol_delta_min": -1.0,
+          "tst_delta_h": 0.016666666666669272,
+          "sws_delta_pp": 0.0,
+          "rem_delta_pp": -3.552713678800501e-15
+        },
+        {
+          "intervention": "delay_bedtime_30min",
+          "label": "Delay bedtime by 30 minutes",
+          "desc": "Lets homeostatic sleep pressure build above the threshold; reduces SOL for early-bedtime owls.",
+          "score_baseline": 95.53296814999972,
+          "score_after": 95.63296814999973,
+          "score_delta": 0.10000000000000853,
+          "sol_delta_min": -0.1666666666666643,
+          "tst_delta_h": 0.0027777777777799884,
+          "sws_delta_pp": 3.552713678800501e-15,
+          "rem_delta_pp": 0.0
+        },
+        {
+          "intervention": "skip_last_caffeine",
+          "label": "Skip your last caffeinated drink today",
+          "desc": "Removes the residual body caffeine that suppresses SWS + delays SOL.",
+          "score_baseline": 95.53296814999972,
+          "score_after": 95.53296814999972,
+          "score_delta": 0.0,
+          "sol_delta_min": 0.0,
+          "tst_delta_h": 0.0,
+          "sws_delta_pp": 0.0,
+          "rem_delta_pp": 0.0
+        },
+        {
+          "intervention": "halve_last_caffeine",
+          "label": "Halve your last caffeinated drink",
+          "desc": "Halves the bedtime burden contribution.",
+          "score_baseline": 95.53296814999972,
+          "score_after": 95.53296814999972,
+          "score_delta": 0.0,
+          "sol_delta_min": 0.0,
+          "tst_delta_h": 0.0,
+          "sws_delta_pp": 0.0,
+          "rem_delta_pp": 0.0
+        },
+        {
+          "intervention": "skip_alcohol",
+          "label": "Skip the alcoholic drinks tonight",
+          "desc": "Removes first-half-night REM suppression and second-half fragmentation.",
+          "score_baseline": 95.53296814999972,
+          "score_after": 95.53296814999972,
+          "score_delta": 0.0,
+          "sol_delta_min": 0.0,
+          "tst_delta_h": 0.0,
+          "sws_delta_pp": 0.0,
+          "rem_delta_pp": 0.0
+        },
+        {
+          "intervention": "eat_earlier",
+          "label": "Eat your last meal 1 hour earlier",
+          "desc": "Meals within 2 h of bed delay SOL by 10-30 min (Crispim 2011).",
+          "score_baseline": 95.53296814999972,
+          "score_after": 95.53296814999972,
+          "score_delta": 0.0,
+          "sol_delta_min": 0.0,
+          "tst_delta_h": 0.0,
+          "sws_delta_pp": 0.0,
+          "rem_delta_pp": 0.0
+        },
+        {
+          "intervention": "advance_bedtime_30min",
+          "label": "Go to bed 30 minutes earlier",
+          "desc": "If your TST is too short, an earlier bedtime extends sleep.",
+          "score_baseline": 95.53296814999972,
+          "score_after": 93.43296814999972,
+          "score_delta": -2.0999999999999943,
+          "sol_delta_min": 3.5,
+          "tst_delta_h": -0.05833333333333357,
+          "sws_delta_pp": 0.11326617052953125,
+          "rem_delta_pp": -0.288848568868346
+        }
+      ]
+    }
+  ]
+}

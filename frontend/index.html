@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Predict tonight's sleep, optimise tomorrow's alertness. Free, no login, runs entirely in your browser." />
+<title>SleepArchitect: predict tonight's sleep</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="bg"></div>
+
+<header>
+  <div class="brand">
+    <span class="logo-dot"></span>
+    <div class="brand-text">
+      <div class="logo">SleepArchitect</div>
+      <div class="tagline">predict tonight, optimise tomorrow</div>
+    </div>
+  </div>
+  <div class="meta">no login, no tracking, runs offline</div>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" data-tab="day">Your day</button>
+  <button class="tab" data-tab="tonight">Tonight</button>
+  <button class="tab" data-tab="clock">24-hour clock</button>
+  <button class="tab" data-tab="tomorrow">Tomorrow</button>
+  <button class="tab" data-tab="optimize">Optimise</button>
+  <button class="tab" data-tab="about">About</button>
+</nav>
+
+<main>
+  <!-- ========================================================= DAY ===== -->
+  <section class="tab-panel active" data-panel="day">
+    <div class="grid-2col">
+    <div class="card">
+      <h2>You</h2>
+      <div class="row">
+        <label>Chronotype (MCTQ sleep midpoint on free days)
+          <input type="range" id="msfsc" min="2.0" max="7.0" step="0.25" value="4.0" />
+          <span class="readout" id="msfsc_readout">04:00 - intermediate</span>
+        </label>
+      </div>
+      <div class="row two-up">
+        <label>Age <input type="number" id="age" min="18" max="100" value="35" /></label>
+        <label>Weight (kg) <input type="number" id="weight_kg" min="30" max="200" step="0.5" value="70" /></label>
+      </div>
+      <div class="row two-up">
+        <label>Sex
+          <select id="sex"><option value="M">Male</option><option value="F">Female</option></select>
+        </label>
+        <label>CYP1A2 (caffeine metaboliser)
+          <select id="cyp1a2">
+            <option value="unknown" selected>Unknown</option>
+            <option value="fast">Fast (AA)</option>
+            <option value="intermediate">Intermediate (AC)</option>
+            <option value="slow">Slow (CC)</option>
+          </select>
+        </label>
+      </div>
+      <div class="row two-up">
+        <label>Smoker
+          <select id="smoker"><option value="false" selected>No</option><option value="true">Yes</option></select>
+        </label>
+        <label>Hormonal contraception
+          <select id="hc"><option value="false" selected>No</option><option value="true">Yes</option></select>
+        </label>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Today's schedule</h2>
+      <div class="row two-up">
+        <label>Woke up at <input type="number" id="wake_time_h" min="0" max="24" step="0.25" value="7.0" /></label>
+        <label>Target bedtime <input type="number" id="bedtime_h" min="18" max="32" step="0.25" value="23.0" /></label>
+      </div>
+      <div class="row two-up">
+        <label>Last night's sleep (h)
+          <input type="number" id="prev_sleep_h" min="3" max="12" step="0.25" value="7.5" /></label>
+        <label>Last meal at <input type="number" id="last_meal_h" min="6" max="32" step="0.25" value="19.0" /></label>
+      </div>
+      <div class="row two-up">
+        <label>Meal size
+          <select id="meal_size">
+            <option value="light">Light</option>
+            <option value="medium" selected>Medium</option>
+            <option value="heavy">Heavy</option>
+          </select>
+        </label>
+        <label>Evening light (lux 2h pre-bed)
+          <input type="range" id="light_lux" min="0" max="2000" step="20" value="200" />
+          <span class="readout" id="light_readout">200 lux</span>
+        </label>
+      </div>
+      <div class="row">
+        <label class="checkbox-row">
+          <input type="checkbox" id="screen_late" checked />
+          <span>Bright screens within 1 h of bed</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Caffeine</h2>
+      <div id="caffeine_list"></div>
+      <button id="add_caffeine" class="ghost small">+ Add a drink</button>
+    </div>
+
+    <div class="card">
+      <h2>Alcohol</h2>
+      <div id="alcohol_list"></div>
+      <button id="add_alcohol" class="ghost small">+ Add a drink</button>
+    </div>
+
+    <div class="card">
+      <h2>Exercise</h2>
+      <div id="exercise_list"></div>
+      <button id="add_exercise" class="ghost small">+ Add a bout</button>
+    </div>
+
+    <div class="card cta-card">
+      <button id="recompute" class="primary big">Forecast my sleep →</button>
+      <button id="saveProfile" class="ghost">Save</button>
+      <button id="loadProfile" class="ghost">Load</button>
+    </div>
+    </div>
+  </section>
+
+  <!-- ====================================================== TONIGHT ===== -->
+  <section class="tab-panel" data-panel="tonight">
+    <div class="grid-2col">
+    <div class="card hero-card">
+      <h2>Tonight's sleep</h2>
+      <div class="score-ring" id="score_ring">
+        <svg viewBox="0 0 200 200" id="score_ring_svg">
+          <circle cx="100" cy="100" r="84" fill="none" stroke="#27313b" stroke-width="14"/>
+          <circle cx="100" cy="100" r="84" fill="none" stroke="url(#sleep-grad)" stroke-width="14"
+                  stroke-linecap="round" id="score_ring_arc"
+                  pathLength="100" stroke-dasharray="0 100"
+                  transform="rotate(-90 100 100)"/>
+          <defs>
+            <linearGradient id="sleep-grad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#5a8dee"/>
+              <stop offset="100%" stop-color="#bf94f0"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="score-center">
+          <div class="score-value" id="score_value">-</div>
+          <div class="score-label">sleep score</div>
+        </div>
+      </div>
+      <div class="interpretation" id="interpretation">-</div>
+    </div>
+
+    <div class="card">
+      <h2>Key numbers</h2>
+      <div class="metric-grid">
+        <div class="metric">
+          <div class="metric-value" id="m_sol">-</div>
+          <div class="metric-label">Sleep onset latency</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value" id="m_tst">-</div>
+          <div class="metric-label">Total sleep time</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value" id="m_se">-</div>
+          <div class="metric-label">Sleep efficiency</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value" id="m_sws">-</div>
+          <div class="metric-label">Deep sleep (SWS)</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value" id="m_rem">-</div>
+          <div class="metric-label">REM sleep</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value" id="m_waso">-</div>
+          <div class="metric-label">Wake after onset</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card span-2">
+      <h2>Predicted hypnogram</h2>
+      <canvas id="hypno_chart" width="900" height="180"></canvas>
+      <div class="chart-legend">
+        <span class="dot wake"></span> Wake
+        <span class="dot rem"></span> REM
+        <span class="dot n12"></span> N1 / N2 (light NREM)
+        <span class="dot sws"></span> SWS (deep sleep)
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Sleep architecture</h2>
+      <canvas id="archi_donut" width="280" height="220"></canvas>
+    </div>
+
+    <div class="card">
+      <h2>Two-process model</h2>
+      <canvas id="two_process" width="500" height="220"></canvas>
+      <div class="chart-legend">
+        <span class="dot processS"></span> Process S (homeostatic)
+        <span class="dot upperT"></span> Upper threshold
+        <span class="dot lowerT"></span> Lower threshold
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- ======================================================= CLOCK ===== -->
+  <section class="tab-panel" data-panel="clock">
+    <div class="grid-2col">
+    <div class="card clock-card">
+      <h2>Your 24-hour clock</h2>
+      <p class="hint">Each ring shows when something happens. Inner glow = sleep pressure.
+                       Outer dots = events.  Background gradient = circadian (your body's clock).</p>
+      <canvas id="clock_chart" width="600" height="600"></canvas>
+    </div>
+    <div class="card">
+      <h2>Legend</h2>
+      <ul class="legend-list">
+        <li><span class="legend-swatch caf"></span> Caffeine doses (size = mg)</li>
+        <li><span class="legend-swatch alc"></span> Alcohol drinks (size = drinks)</li>
+        <li><span class="legend-swatch ex"></span> Exercise bouts (length = duration)</li>
+        <li><span class="legend-swatch meal"></span> Last meal</li>
+        <li><span class="legend-swatch light"></span> Bright light exposure</li>
+        <li><span class="legend-swatch sleep"></span> Predicted sleep window</li>
+        <li><span class="legend-swatch cbtmin"></span> Body temperature nadir (CBTmin)</li>
+        <li><span class="legend-swatch dlmo"></span> Predicted DLMO (melatonin onset)</li>
+      </ul>
+      <h3 style="margin-top:1.2rem">What it tells you</h3>
+      <ul style="font-size:0.9rem;color:var(--muted);padding-left:1.2rem">
+        <li>Caffeine within ~ 8 h of bed leaves residual; visible as a long arc.</li>
+        <li>Alcohol in the evening shifts REM toward the second half.</li>
+        <li>Bright light close to bed delays the sleep window.</li>
+        <li>The grey-shaded arc shows where your body wants to be asleep
+            (S above threshold) -- ideally aligned with your bedtime.</li>
+      </ul>
+    </div>
+    </div>
+  </section>
+
+  <!-- ===================================================== TOMORROW ===== -->
+  <section class="tab-panel" data-panel="tomorrow">
+    <div class="card">
+      <h2>Tomorrow's alertness</h2>
+      <p class="hint">SAFTE effectiveness curve from this morning's wake through tomorrow evening. Lower KSS = more alert.</p>
+      <canvas id="alertness_chart" width="900" height="320"></canvas>
+      <div class="chart-legend">
+        <span class="dot alert"></span> Alertness (effectiveness, 0-100)
+        <span class="dot kss"></span> Karolinska Sleepiness Scale (1=alert, 9=sleepy)
+        <span class="dot sleep-band"></span> Sleep window
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Tomorrow's peak windows</h2>
+      <div class="metric-grid">
+        <div class="metric">
+          <div class="metric-value" id="best_focus_time">-</div>
+          <div class="metric-label">Best time for deep work</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value" id="worst_focus_time">-</div>
+          <div class="metric-label">Post-lunch / evening dip</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value" id="energy_peak">-</div>
+          <div class="metric-label">Second wind / energy peak</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================== OPTIMIZE ===== -->
+  <section class="tab-panel" data-panel="optimize">
+    <div class="card">
+      <h2>What would improve tonight?</h2>
+      <p class="hint">Each intervention re-runs the full forecast and shows how much your sleep score improves.</p>
+      <div id="opt_table"></div>
+    </div>
+  </section>
+
+  <!-- ======================================================= ABOUT ===== -->
+  <section class="tab-panel" data-panel="about">
+    <div class="card">
+      <h2>How SleepArchitect works</h2>
+      <p>Sleep researchers have a 40-year-old quantitative model -- Borbely's two-process model -- that predicts sleep timing from just two variables: <em>Process S</em> (homeostatic sleep pressure, rising linearly during wake and falling exponentially during sleep) and <em>Process C</em> (circadian propensity, a sinusoid set by your body clock).  Adding caffeine pharmacokinetics, alcohol pharmacokinetics, exercise effects, meal-timing effects, and light-PRC-based circadian phase shifts gives a complete personalised sleep predictor.</p>
+      <p>Existing sleep apps (Oura, Whoop, Apple Health, Sleep Cycle, AutoSleep) track sleep <strong>retrospectively</strong>.  SleepArchitect is, to our knowledge, the first free open-source tool that <strong>predicts</strong> tonight's sleep from today's caffeine, alcohol, exercise, light, and meal timing.</p>
+      <h3>Citations</h3>
+      <ul style="font-size:0.92rem">
+        <li>Borbely 1982 <em>Hum Neurobiol</em> -- two-process model</li>
+        <li>Daan, Beersma & Borbely 1984 <em>Am J Physiol</em> -- tau parameters</li>
+        <li>Skeldon et al. 2017 <em>Sci Rep</em> -- two-process implementation</li>
+        <li>Khalsa et al. 2003 <em>J Physiol</em> -- light PRC</li>
+        <li>Zeitzer et al. 2000 <em>J Physiol</em> -- light dose-response</li>
+        <li>Brainard 2001 <em>J Neurosci</em>, Lockley 2003 -- melatonin suppression</li>
+        <li>Drake et al. 2013 <em>JCSM</em> -- caffeine effect on sleep</li>
+        <li>Clark & Landolt 2017 <em>Sleep Med Rev</em> -- caffeine + SWS</li>
+        <li>Ebrahim et al. 2013 <em>ACER</em> -- alcohol + REM</li>
+        <li>Stutz et al. 2019 <em>Sleep Med Rev</em> -- exercise meta-analysis</li>
+        <li>Crispim 2011, Iao 2021 -- meal timing</li>
+        <li>Hursh / Mallis 2004 -- SAFTE alertness model</li>
+        <li>Roenneberg 2003 <em>J Biol Rhythms</em> -- MCTQ chronotype</li>
+        <li>Akerstedt & Gillberg 1990 <em>Int J Neurosci</em> -- KSS</li>
+      </ul>
+      <h3>Privacy</h3>
+      <p>SleepArchitect runs entirely in your browser. No analytics, no
+      cookies, no network calls.  Profile is stored only in your browser's
+      <code>localStorage</code>.</p>
+      <h3>Limitations</h3>
+      <p>This is a forecast not a sleep study.  Sleep architecture predictions
+      are population averages, not personalised polysomnography.  For
+      clinical sleep concerns (apnoea, insomnia, RLS, narcolepsy), see a
+      sleep physician.  Inputs assume non-pregnant healthy adults; use
+      pregnancy and CYP1A2 toggles for relevant covariates.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>SleepArchitect -- public domain (CC0). Borbely-style two-process model with sleep-modulator coupling.</span>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

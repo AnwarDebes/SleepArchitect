@@ -1,0 +1,109 @@
+<svg width="1200" height="320" viewBox="0 0 1200 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SleepArchitect banner">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#131b3a"/>
+      <stop offset="1" stop-color="#1a2348"/>
+    </linearGradient>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M 28 0 H 0 V 28" fill="none" stroke="#bfe3ff" stroke-opacity="0.05" stroke-width="1"/>
+    </pattern>
+    <pattern id="gridMajor" width="112" height="112" patternUnits="userSpaceOnUse">
+      <path d="M 112 0 H 0 V 112" fill="none" stroke="#bfe3ff" stroke-opacity="0.08" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="320" rx="16" fill="url(#bg)"/>
+  <rect width="1200" height="320" rx="16" fill="url(#grid)"/>
+  <rect width="1200" height="320" rx="16" fill="url(#gridMajor)"/>
+  <rect x="1.5" y="1.5" width="1197" height="317" rx="15" fill="none" stroke="#7ab8ff" stroke-opacity="0.3" stroke-width="3"/>
+  <rect x="12" y="12" width="1176" height="296" rx="8" fill="none" stroke="#bfe3ff" stroke-opacity="0.12" stroke-width="1" stroke-dasharray="10 6"/>
+
+  <!-- faint stars near the wordmark -->
+  <g fill="#dce6ff">
+    <circle cx="98"  cy="48" r="1.8" opacity="0.7"/>
+    <circle cx="156" cy="34" r="1.3" opacity="0.5"/>
+    <circle cx="230" cy="52" r="1.6" opacity="0.6"/>
+    <circle cx="320" cy="36" r="1.2" opacity="0.45"/>
+    <circle cx="395" cy="58" r="1.5" opacity="0.55"/>
+  </g>
+
+  <!-- wordmark -->
+  <text x="60" y="112" font-family="Segoe UI, Helvetica, Arial, sans-serif"
+        font-size="54" font-weight="800" letter-spacing="0.5">
+    <tspan fill="#e8edff">Sleep</tspan><tspan fill="#ffd166">Architect</tspan>
+  </text>
+  <text x="63" y="150" font-family="Segoe UI, Helvetica, Arial, sans-serif"
+        font-size="21" fill="#aebadf">Predict tonight's sleep.</text>
+  <text x="63" y="178" font-family="Segoe UI, Helvetica, Arial, sans-serif"
+        font-size="21" fill="#aebadf">Optimise tomorrow's alertness.</text>
+  <text x="63" y="206" font-family="Segoe UI, Helvetica, Arial, sans-serif"
+        font-size="15" fill="#7e8ab0">From caffeine, alcohol, exercise, light, and meals.</text>
+
+  <!-- drafting title block -->
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#8fa3d0" letter-spacing="1.2">
+    <rect x="60" y="232" width="372" height="64" fill="#101730" fill-opacity="0.55" stroke="#7ab8ff" stroke-opacity="0.35" stroke-width="1.5"/>
+    <line x1="60" y1="253" x2="432" y2="253" stroke="#7ab8ff" stroke-opacity="0.25" stroke-width="1"/>
+    <line x1="60" y1="274" x2="432" y2="274" stroke="#7ab8ff" stroke-opacity="0.25" stroke-width="1"/>
+    <text x="72" y="247">PROJECT: TONIGHT'S SLEEP</text>
+    <text x="72" y="268">MODEL: TWO-PROCESS (BORBELY 1982) + SAFTE</text>
+    <text x="72" y="289">SCALE: 24 H &#183; FREE &#183; NO LOGIN &#183; IN-BROWSER</text>
+  </g>
+
+  <!-- ====== the drawing: two-process model over 24 h ====== -->
+
+  <!-- sleep window band: 23:00 to 07:00 -->
+  <rect x="787" y="86" width="223" height="164" fill="#7ab8ff" fill-opacity="0.09"/>
+  <line x1="787"  y1="86" x2="787"  y2="250" stroke="#7ab8ff" stroke-opacity="0.35" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <line x1="1010" y1="86" x2="1010" y2="250" stroke="#7ab8ff" stroke-opacity="0.35" stroke-width="1.5" stroke-dasharray="6 5"/>
+
+  <!-- dimension line over the sleep window -->
+  <g stroke="#ffd166" stroke-width="1.5">
+    <line x1="787" y1="70" x2="1010" y2="70"/>
+    <line x1="787" y1="64" x2="787" y2="80"/>
+    <line x1="1010" y1="64" x2="1010" y2="80"/>
+  </g>
+  <path d="M 787 70 l 9 -4 v 8 Z" fill="#ffd166"/>
+  <path d="M 1010 70 l -9 -4 v 8 Z" fill="#ffd166"/>
+  <text x="898" y="60" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif"
+        font-size="13" fill="#ffd166" letter-spacing="1">8 H SLEEP WINDOW</text>
+
+  <!-- moon and stars inside the band -->
+  <path d="M 912 116 A 13 13 0 1 1 899 99 A 10.5 10.5 0 0 0 912 116 Z" fill="#cdd6f4" opacity="0.95"/>
+  <circle cx="938" cy="102" r="1.6" fill="#dce6ff" opacity="0.7"/>
+  <circle cx="870" cy="98"  r="1.3" fill="#dce6ff" opacity="0.55"/>
+
+  <!-- Process S: sleep pressure builds while awake, dissipates asleep -->
+  <path d="M 480 195 C 590 168, 705 122, 787 102
+           C 830 178, 880 208, 1010 222
+           C 1060 220, 1110 214, 1148 210"
+        fill="none" stroke="#ffd166" stroke-width="4" stroke-linejoin="round"/>
+
+  <!-- Process C: circadian drive -->
+  <path d="M 480 150 C 560 128, 640 118, 703 118
+           C 790 118, 860 228, 926 228
+           C 985 228, 1080 196, 1148 170"
+        fill="none" stroke="#7ab8ff" stroke-width="4" stroke-linejoin="round" stroke-dasharray="1 0"/>
+
+  <!-- curve labels with leader lines -->
+  <text x="497" y="215" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" fill="#ffd166">Process S</text>
+  <line x1="556" y1="206" x2="570" y2="190" stroke="#ffd166" stroke-width="1.2" opacity="0.7"/>
+  <text x="497" y="132" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" fill="#7ab8ff">Process C</text>
+  <line x1="556" y1="136" x2="572" y2="143" stroke="#7ab8ff" stroke-width="1.2" opacity="0.7"/>
+
+  <!-- axis -->
+  <line x1="480" y1="250" x2="1150" y2="250" stroke="#8fa3d0" stroke-width="2"/>
+  <g stroke="#8fa3d0" stroke-width="2">
+    <line x1="480"  y1="250" x2="480"  y2="257"/>
+    <line x1="648"  y1="250" x2="648"  y2="257"/>
+    <line x1="816"  y1="250" x2="816"  y2="257"/>
+    <line x1="984"  y1="250" x2="984"  y2="257"/>
+    <line x1="1148" y1="250" x2="1148" y2="257"/>
+  </g>
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" fill="#8fa3d0" text-anchor="middle">
+    <text x="480"  y="274">12:00</text>
+    <text x="648"  y="274">18:00</text>
+    <text x="816"  y="274">24:00</text>
+    <text x="984"  y="274">06:00</text>
+    <text x="1148" y="274">12:00</text>
+  </g>
+</svg>

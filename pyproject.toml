@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sleeparchitect"
+version = "0.1.0"
+description = "Predictive sleep model from chronotype + caffeine + alcohol + exercise + light + meals"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = ["numpy>=1.24", "matplotlib>=3.7"]
+
+[tool.setuptools.packages.find]
+include = ["sleeparchitect*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

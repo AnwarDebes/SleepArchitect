@@ -1,0 +1,94 @@
+{
+  "per_case": [
+    {
+      "check": "Caffeine 400 mg at bed -> SOL delay (min)",
+      "predicted": 35.0,
+      "lo": 25,
+      "hi": 50,
+      "source": "Drake 2013 JCSM 9:1195",
+      "within": true
+    },
+    {
+      "check": "Caffeine 400 mg at bed -> SWS suppression (%)",
+      "predicted": 24.500000000000004,
+      "lo": 15,
+      "hi": 35,
+      "source": "Clark & Landolt 2017 Sleep Med Rev",
+      "within": true
+    },
+    {
+      "check": "Caffeine 100 mg residual -> SOL delay (min)",
+      "predicted": 5.0,
+      "lo": 2,
+      "hi": 12,
+      "source": "Drake 2013 (low dose extrapolation)",
+      "within": true
+    },
+    {
+      "check": "Alcohol BAC 0.05% -> first-half REM suppression (%)",
+      "predicted": 16.0,
+      "lo": 10,
+      "hi": 22,
+      "source": "Ebrahim 2013 Alcohol Clin Exp Res",
+      "within": true
+    },
+    {
+      "check": "Alcohol BAC 0.10% -> first-half REM suppression (%)",
+      "predicted": 32.0,
+      "lo": 20,
+      "hi": 35,
+      "source": "Ebrahim 2013",
+      "within": true
+    },
+    {
+      "check": "Light 100 lux 6.5 h centred at 22:00 -> phase shift (h)",
+      "predicted": 0.9659258262890683,
+      "lo": 0.3,
+      "hi": 1.5,
+      "source": "Zeitzer 2000, Khalsa 2003",
+      "within": true
+    },
+    {
+      "check": "Light 1000 lux 6.5 h -> phase shift (h)",
+      "predicted": 1.8726337731141784,
+      "lo": 1.0,
+      "hi": 2.5,
+      "source": "Zeitzer 2000",
+      "within": true
+    },
+    {
+      "check": "Light 100 lux -> melatonin suppression (%)",
+      "predicted": 63.212055882855765,
+      "lo": 40,
+      "hi": 75,
+      "source": "Brainard 2001, Lockley 2003",
+      "within": true
+    },
+    {
+      "check": "Light 500 lux -> melatonin suppression (%)",
+      "predicted": 99.32620530009146,
+      "lo": 90,
+      "hi": 100,
+      "source": "Brainard 2001",
+      "within": true
+    },
+    {
+      "check": "clean day score >= 80",
+      "predicted": 100.0,
+      "lo": 80,
+      "hi": 100,
+      "source": "internal",
+      "within": true
+    },
+    {
+      "check": "bad day score < 75",
+      "predicted": 69.70128706728416,
+      "lo": 0,
+      "hi": 75,
+      "source": "internal",
+      "within": true
+    }
+  ],
+  "n_passed": 11,
+  "n_total": 11
+}
