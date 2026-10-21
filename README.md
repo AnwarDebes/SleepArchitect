@@ -12,6 +12,8 @@
 
 **Predict tonight's sleep, optimise tomorrow's alertness. Free, no login, runs entirely in your browser.**
 
+**[Open the live app](https://anwardebes.github.io/SleepArchitect/)**
+
 </div>
 
 ---
@@ -39,6 +41,8 @@ into a single predictive sleep model with an elegant 24-hour
 clock-face frontend.
 
 ## Running the frontend
+
+The app is live at **https://anwardebes.github.io/SleepArchitect/**, deployed from `frontend/` by [`.github/workflows/pages.yml`](.github/workflows/pages.yml). To run it locally:
 
 ```bash
 cd frontend
