@@ -379,7 +379,12 @@ const ids = ["msfsc","msfsc_readout","age","weight_kg","sex","cyp1a2","smoker","
               "opt_table"];
 for (const id of ids) els[id] = document.getElementById(id);
 
-function fmt2(x) { const h = Math.floor(x); const m = Math.round((x-h)*60); return `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}`; }
+function fmt2(x) {
+  // clock time: wrap to 0-24 h and round to whole minutes (so 7.999 h reads 08:00, not 07:60)
+  const total = Math.round((((x % 24) + 24) % 24) * 60) % 1440;
+  const h = Math.floor(total / 60), m = total % 60;
+  return `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}`;
+}
 
 // Tab switching
 document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => {
@@ -395,7 +400,7 @@ document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () =>
   }
 }));
 
-// Dynamic lists -- caffeine / alcohol / exercise rows
+// Dynamic lists: caffeine / alcohol / exercise rows
 function makeRow(type, t=null, val=null, intensity=null, dur=null) {
   const row = document.createElement("div");
   row.className = "item-row" + (type === "exercise" ? " three" : "");
@@ -937,7 +942,11 @@ function loadProfile() {
 
 // ============================================================ bindings ==
 
-els.recompute.addEventListener("click", computeAndRender);
+els.recompute.addEventListener("click", () => {
+  computeAndRender();
+  document.querySelector('.tab[data-tab="tonight"]').click();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
 els.saveProfile.addEventListener("click", saveProfile);
 els.loadProfile.addEventListener("click", () => { if (loadProfile()) computeAndRender(); });
 for (const id of ["msfsc","age","weight_kg","sex","cyp1a2","smoker","hc",
